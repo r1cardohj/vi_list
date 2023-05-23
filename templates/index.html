@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{name}} 's movies list</title>
+    <link rel = "icon" href="{{url_for('static', filename = 'favicon.gif')}}">
+    <link rel = "stylesheet" href="{{url_for('static', filename = 'style.css')}}" type='text/css'>
+</head>
+<body>
+    
+    <h1>
+        <img class = 'avatar' alt="Avatar" src = "{{ url_for('static', filename = 'img/demon.gif')}}">
+         {{name}} 's movies list</h1>
+    <p>it is been a long time...</p>
+    <p>{{ movies|length }} title</p>
+    <ul class = 'movie-list'>
+        {% for movie in movies %}
+        <li>{{ movie.title }}- {{ movie.year }} - ({{ movie.view_date }})</li>
+        {% endfor %}
+        
+    </ul>
+</body>
+</html>
