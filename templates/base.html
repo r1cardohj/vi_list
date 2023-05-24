@@ -15,13 +15,20 @@
     {% endfor %}
     <h2>
         <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='img/demon.gif') }}">
-        {{ user.name }}'s Movielist
+        hj's Movielist
     </h2>
     <p>it is been a long time...</p>
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if  not current_user.is_authenticated %}
+            <li><a href="{{ url_for('login')}}">login</a></li>
+            {% endif %}
+            {% if current_user.is_authenticated%}
             <li><a href="{{ url_for('add_movie_item')}}">Add</a></li>
+            <li><a href="{{ url_for('setting')}}">setting</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
         </ul>
     </nav>
     
