@@ -54,7 +54,71 @@ nav li a:hover {
     font-weight: bold;
     color: black;
     text-decoration: none;
-    background-color: azure;
+    background-color: lightgreen;
     border-radius: 5px;
     padding: 3px 5px;
+}
+.editbtn {
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    background-color:lightyellow;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+.delbtn {
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    background-color:lightcoral;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+input[type=submit] {
+    font-family: inherit;
+}
+
+input[type=text] {
+    border: 1px solid #ddd;
+}
+
+input[name=year] {
+    width: 50px;
+}
+
+.btn {
+    font-size: 12px;
+    padding: 3px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+.add_form {
+    margin: 0 auto;
+}
+.alert {
+    position: relative;
+    padding: 7px;
+    margin: 7px 0;
+    border: 1px solid transparent;
+    color:black;
+    background-color:rgba(0, 0, 0, 0.16);
+    border-color:#555555;
+    border-radius: 5px;
+}
+.inline-form {
+    display: inline;
 }

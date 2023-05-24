@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>{{ movies|length }} items:</p>
+    <!--<p>{{ movies|length }} items:</p>-->
     <ul class = 'movie-list'>
         {% for movie in movies %}
         <li>{{ movie.title }}- {{ movie.year }}
             <span class="float-right">
-                <a class='aqyi' href="https://so.iqiyi.com/so/q_{{ movie.title }}" target="_blank" title="Find this movie on Aqyi">Go</a>
+                <a class='aqyi' href="https://so.iqiyi.com/so/q_{{ movie.title }}" target="_blank" title="Find this movie on Aqyi">Go</a>               
+                <a class="editbtn" href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
+                <form class="inline-form" method="post" action="{{ url_for('del_movie', movie_id=movie.id) }}">
+                    <input class="delbtn" type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure?')">
+                </form>   
             </span>
         </li>
         {% endfor %}
