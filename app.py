@@ -58,6 +58,12 @@ def forge():
     click.echo('Done')
 
 
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)
+
+
 @app.route('/')
 def index():
     """index page
@@ -68,3 +74,8 @@ def index():
     user = User.query.first()
     movies = Movie.query.all()
     return render_template('index.html',user = user,movies = movies)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    user = User.query.first()
+    return render_template('404.html',user=user),404

@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{{user.name}} 's movies list</title>
-    <link rel = "icon" href="{{url_for('static', filename = 'favicon.gif')}}">
-    <link rel = "stylesheet" href="{{url_for('static', filename = 'style.css')}}" type='text/css'>
-</head>
-<body>
-    
-    <h1>
-        <img class = 'avatar' alt="Avatar" src = "{{ url_for('static', filename = 'img/demon.gif')}}">
-         {{user.name}} 's movies list</h1>
-    <p>it is been a long time...</p>
-    <p>{{ movies|length }} title</p>
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ movies|length }} items:</p>
     <ul class = 'movie-list'>
         {% for movie in movies %}
-        <li>{{ movie.title }}- {{ movie.year }}</li>
+        <li>{{ movie.title }}- {{ movie.year }}
+            <span class="float-right">
+                <a class='aqyi' href="https://so.iqiyi.com/so/q_{{ movie.title }}" target="_blank" title="Find this movie on Aqyi">Go</a>
+            </span>
+        </li>
         {% endfor %}
         
     </ul>
-</body>
-</html>
+{% endblock %}
