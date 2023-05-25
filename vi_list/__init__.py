@@ -21,6 +21,7 @@ login_manager = LoginManager(app)
 
 @app.context_processor
 def inject_user():
+    from vi_list.models import User
     user = User.query.first()
     return dict(user=user)
 
@@ -28,10 +29,11 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
+    from vi_list.models import User
     user = User.query.get(user_id)
     return user
 
 
 
 from vi_list import views, errors, commands
-from vi_list.models import User, Movie
+

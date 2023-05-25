@@ -5,4 +5,4 @@ from flask import render_template
 @app.errorhandler(404)
 def page_not_found(e):
     user = User.query.first()
-    return render_template('404.html',user=user),404
+    return render_template('error/404.html',user=user),404

@@ -70,7 +70,7 @@ class MovieListTESTCase(unittest.TestCase):
         ),follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertIn('success',data)
-        self.assertIn('test movie1')
+        self.assertIn('test movie1', data)
     
         #电影标题为空
         response = self.client.post('/add', data=dict(
@@ -158,43 +158,35 @@ class MovieListTESTCase(unittest.TestCase):
         ),follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertIn('Login success.',data)
-        self.assertNot('Logout',data)
-        self.assertNot('setting',data)
-        self.assertNot('Add',data)
-        self.assertNot('delete',data)
-        self.assertNot('Edit',data)
+        self.assertIn('Logout',data)
+        self.assertIn('setting',data)
+        self.assertIn('Add',data)
+        self.assertIn('delete',data)
+        self.assertIn('Edit',data)
         
         # 测试使用错误的密码登录
         response = self.client.post('/login', data=dict(
             username='test',
-            password='456'
+            pw='456'
         ), follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
-        self.assertIn('are you kiding me?', data)
+        self.assertIn('faild login', data)
 
         # 测试使用错误的用户名登录
         response = self.client.post('/login', data=dict(
             username='wrong',
-            password='123'
+            pw='123'
         ), follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
-        self.assertIn('are you kiding me?', data)
+        self.assertIn('faild login', data)
         
-        # 测试使用错误的用户名登录
-        response = self.client.post('/login', data=dict(
-            username='wrong',
-            password='123'
-        ), follow_redirects=True)
-        data = response.get_data(as_text=True)
-        self.assertNotIn('Login success.', data)
-        self.assertIn('are you kiding me?', data)
 
         # 测试使用空用户名登录
         response = self.client.post('/login', data=dict(
             username='',
-            password='123'
+            pw='123'
         ), follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)
@@ -203,7 +195,7 @@ class MovieListTESTCase(unittest.TestCase):
         # 测试使用空密码登录
         response = self.client.post('/login', data=dict(
             username='test',
-            password=''
+            pw=''
         ), follow_redirects=True)
         data = response.get_data(as_text=True)
         self.assertNotIn('Login success.', data)

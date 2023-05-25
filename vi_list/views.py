@@ -72,7 +72,7 @@ def login():
         pw = request.form['pw']
         if not username or not pw:
             flash('are you kiding me?')
-            return redirect(url_for(login))
+            return redirect(url_for('login'))
         
         user = User.query.first()
         if username  == user.username and user.validate_password(pw):
@@ -99,10 +99,11 @@ def setting():
         
         if not name or len(name) > 20:
             flash('非法输入')
-            return redirect(url_for(setting))
+            return redirect(url_for('setting'))
         
         current_user.name = name
         db.session.commit()
         flash('setting successfully!')
+        return redirect(url_for('index'))
     
     return render_template('setting.html')
